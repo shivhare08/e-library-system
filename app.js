@@ -1,54 +1,43 @@
 const express = require('express')
 const app = express();
 const port = 1000;
-const bodyparser = require('body-parser')
+const bodyParser = require('body-parser')
 const cookieparser = require("cookie-parser")
-const session = require('express-session')
-const flash = require('connect-flash');
+const session = require('express-session'); 
+const flash = require('connect-flash'); 
+// const flash = require('express-flash')
+const mongoose = require('mongoose');
+const router = require('./route/web');
+
+app.use(cookieparser());
+
+//=====session message==========\\
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true,
+    
+  }));
+
+//=======flash message=========\\
+app.use(flash());
+
+app.use(express.json())
 
 //Public file
 app.use(express.static('public'));
 
-app.use(bodyparser.urlencoded({extended:false}))
-app.use(bodyparser.json())
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-
-app.use(cookieparser())
 // parse application/json
-app.use(bodyparser.json())
+app.use(bodyParser.json())
+
+app.use('/',router);
+
+
+mongoose.connect("mongodb+srv://shivhares2002:mww8frbY4dnHF92a@cluster0.gq0hu.mongodb.net/e-library");
 
 app.set('viewengine','ejs')
-
-app.use(session({
-    cookie: { maxAge: 60000 },
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-}));
-
-app.use(flash());
-  
-
-
-app.get("/",(req,res)=>{
-    //res.render('footer.ejs',{message : req.flash('success')})
-    // res.render('footer.ejs');
-    // res.render('layout/header.ejs',{message : req.flash('success',"great")})
-    res.render('layout/anya.ejs')
-    // req.flash('message',"ok")
-    // res.redirect("/showflash");
-})
-
-//Public file
-
-app.get("/signin",(req,res)=>{
-    res.render('layout/signin.ejs')
-    // res.render('layout/header.ejs',{message : req.flash('message')})
-    // console.log(req.flash('message'));
-    
-    //res.send(req.flash('message'));
-})
-
-
 
 app.listen(port);

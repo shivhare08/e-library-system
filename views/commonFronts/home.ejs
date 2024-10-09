@@ -1,0 +1,84 @@
+<%- include('../layout/header.ejs') %>
+    <div class="section welcome">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="welcome-home">
+                    <div class="welcome-div">
+                        <h2>Welcome</h2>
+                        <h5 class="small-content">This is an e-library management system</h5>
+                        <h2><i class="fa-solid fa-book-open fa-fade"></i></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div onmouseenter="done()" id="sec" >
+            <div class="container">
+                <h2><i class="fa-solid fa-book-open fa-fade"></i> New books</h2>
+                <p id="added" ></p>
+                <center>
+                <div class="row">
+                    <div class="home-image col-md-3 col-6 mt-4">
+                        <div style="width: 80%;height: 200px; background-color: rgba(255, 255, 255, 0.822);"></div>
+                    </div>
+                    <div class="home-image col-md-3 col-6 mt-4">
+                        <div style="width: 80%;height: 200px; background-color: rgba(255, 255, 255, 0.822);"></div>
+                    </div>
+                    <div class="home-image col-md-3 col-6 mt-4">
+                        <div style="width: 80%;height: 200px; background-color: rgba(255, 255, 255, 0.822);"></div>
+                    </div>
+                    <div class="home-image col-md-3 col-6 mt-4">
+                        <div style="width: 80%;height: 200px; background-color: rgba(255, 255, 255, 0.822);"></div>
+                    </div>
+                </div>
+            </center>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+
+    <script>
+
+        async function result(){
+            const element = document.querySelector(".welcome-home");
+            await window.addEventListener("load", () => {
+                element.setAttribute("class", "home-style")
+            })
+
+            setInterval(()=>{
+             const small = document.querySelector(".small-content")
+            small.setAttribute("class", "small-content-style")
+        },3000)
+        }
+        
+        window.addEventListener("load",result())
+        // const element = document.querySelector(".welcome-home");
+        // window.addEventListener("load", () => {
+        //     element.setAttribute("class", "home-style")
+        // })
+
+        // setInterval(()=>{
+        //     const small = document.querySelector(".small-content")
+        //     small.setAttribute("class", "small-content-style")
+        // },3000)
+
+        const p = document.getElementById("added");
+        function done(){
+            const newbook = document.getElementById("sec");
+            
+            newbook.setAttribute("class","sec-style")
+            p.style.transition = "0.5s"
+            // p.style.transition = "1s"
+            p.style.color = "WHITE"
+            p.innerHTML = "we have added some new books"
+        }
+
+
+
+
+        // window.addEventListener("load", async () => {
+        //     await element.setAttribute("class","home-style")
+        // })
+    </script>
+    <%- include('../layout/footer.ejs') %>

@@ -1,0 +1,69 @@
+<%- include('../layout/header.ejs') %>
+    <!-- image-box -->
+    <div class="image-box-signup-container container">
+        <!-- <h4 class=""><i class="fa-solid fa-user"></i> Users sign-up</h4> -->
+            <div class="row">
+                <% if(message.length > 0){ %>
+                    <div class="alert alert-danger">
+                        <h3><%= message %></h3>
+                    </div>
+                <% } %>
+                
+                <div class="col-md-6 image-box-signup-left">
+                    <div class="js" style="display: flex;position: relative; top: 20%; justify-content: center;">
+                        <h6 class="sty"></h6>
+                        <!-- <img src="/image/henry-be-lc7xcWebECc-unsplash.jpg" class="img-fluid"> -->
+                    </div>
+                    <br><br>
+                </div>
+
+                <div class="col-md-6 image-box-signup">
+                    <h3 class="mt-4" style="margin-left: 1.6rem;">Details</h3>
+                    <form method="post" action="/user/signup">
+                        <label>Name</label>
+                        <input type="text" placeholder="name" class="form-control" name="name">
+
+                        <label class="mt-2">email</label>
+                        <input type="email" placeholder="email" class="form-control" name="email">
+
+                        <label class="mt-2">who are you?</label>
+                        <select class="form-select" aria-label="Default select example" name="whoareyou">
+                            <option selected>select</option>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                          </select>
+
+                        <label class="mt-2">city</label>
+                        <input type="text" placeholder="city" class="form-control" name="city">
+
+                        <label class="mt-2">state</label>
+                        <input type="text" placeholder="state" class="form-control" name="state">
+
+                        <label class="mt-2">nationality</label>
+                        <input type="text" placeholder="nationality" class="form-control" name="nationality">
+            
+                        <label class="mt-2">password</label>
+                        <input type="password" placeholder="password" class="form-control" name="password">
+            
+                        <label class="mt-2">re-enter password</label>
+                        <input type="re-enter password" placeholder="re-enter password" class="form-control" name="repassword">
+            
+                        <button class="btn text-dark mt-3">sign-up</button>
+                        <h6 class="mt-1"><a href="/signin">Already have an account? click me <i class="fa-regular fa-hand fa-fade"
+                                    style="color: rgb(255, 254, 254);"></i></a></h6>
+                    </form>
+                </div>
+            </div>
+
+    </div>
+    <!-- image-box end -->
+    <br><br><br><br>
+    <script>
+        const element = document.querySelector(".sty");
+        window.addEventListener ("load",()=>{
+            element.innerHTML = "sign-up here" + '<i class="fa-solid fa-right-to-bracket fa-fade"></i>'
+            element.setAttribute("class","style-things")
+        })
+            // element.setAttribute("class","Sty")
+    </script>
+    <%- include('../layout/footer.ejs') %>
